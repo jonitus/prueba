@@ -1,0 +1,52 @@
+body{
+  background-color: yellowgreen;
+  color:mintcream;
+}
+h1{
+  color:mintcream;
+}
+h2,h3,h4,h5{
+  font-weight:400;
+  color:olivedrab;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Lily Script One', cursive;
+}
+.navbar{
+  background-color: mintcream;
+  border-bottom: 25px double yellowgreen;
+}
+.iconhome{
+  font-family: 'Bungee', cursive;
+}
+.headerfijo{
+  text-align: center;
+}
+.letrah1{
+  color: olivedrab;
+}
+main{
+  color:darkslategray;
+}
+form{
+  color:darkslategray;
+}
+.form-control:focus{
+  color:olive;
+  border-color: olive;
+  box-shadow:0 0 0 0.2rem RGBA(107, 142, 35,0.15);
+}
+.boton-form{
+  background-color: orange;
+  color:white;
+}
+.boton-form:hover{
+  background-color: darkorange;
+}
+.card-header, .card-footer{
+  background-color: mintcream;
+}
+.card{
+  border-top: 25px double yellowgreen;
+  border-bottom: 25px double yellowgreen;
+}

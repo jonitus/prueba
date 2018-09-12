@@ -18,8 +18,10 @@ class CreateCuentosTable extends Migration
             $table->string('titulo');
             $table->integer('idprofesor');
             $table->string('nivel');
-            $table->string('estado');
-            //table->string('valoracion');
+            //Está puesto en nullable temporalmente
+            $table->string('estado')->nullable();
+            $table->string('descripcion');
+            //table->string('valoracion'); 
             $table->string('autor');
             $table->timestamps();
         });

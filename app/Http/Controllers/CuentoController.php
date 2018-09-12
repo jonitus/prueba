@@ -14,7 +14,8 @@ class CuentoController extends Controller
      */
     public function index()
     {
-        //
+        $cuentos = Cuento::all();
+        return view('cuentos.index',compact('cuentos'));
     }
 
     /**
@@ -24,7 +25,7 @@ class CuentoController extends Controller
      */
     public function create()
     {
-        //
+        return view('cuentos.create');
     }
 
     /**
@@ -35,7 +36,18 @@ class CuentoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cuento = new Cuento;
+
+        $cuento->titulo = $request->get('titulo');
+        $cuento->idprofesor = $request->get('idprofesor');
+        $cuento->nivel = $request->get('nivel');
+        $cuento->estado = $request->get('estado');
+        $cuento->autor = $request->get('autor');
+        $cuento->descripcion = $request->get('descripcion');
+
+        $cuento->save();
+
+        return redirect()->route('cuentos.index');
     }
 
     /**
@@ -44,7 +56,7 @@ class CuentoController extends Controller
      * @param  \App\Cuento  $cuento
      * @return \Illuminate\Http\Response
      */
-    public function show(Cuento $cuento)
+    public function show($id)
     {
         //
     }
@@ -55,9 +67,10 @@ class CuentoController extends Controller
      * @param  \App\Cuento  $cuento
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cuento $cuento)
+    public function edit($id)
     {
-        //
+        $cuento = Cuento::find($id);
+        return view('cuentos.edit',compact('cuento','id'));
     }
 
     /**
@@ -67,9 +80,20 @@ class CuentoController extends Controller
      * @param  \App\Cuento  $cuento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cuento $cuento)
+    public function update(Request $request, $id)
     {
-        //
+      $cuento = Cuento::find($id);
+
+      $cuento->titulo = $request->get('titulo');
+      $cuento->idprofesor = $request->get('idprofesor');
+      $cuento->nivel = $request->get('nivel');
+      $cuento->estado = $request->get('estado');
+      $cuento->descripcion = $request->get('descripcion');
+      $cuento->autor = $request->get('autor');
+
+      $cuento->save();
+
+      return redirect()->route('cuentos.index');
     }
 
     /**
@@ -78,8 +102,10 @@ class CuentoController extends Controller
      * @param  \App\Cuento  $cuento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cuento $cuento)
+    public function destroy($id)
     {
-        //
+      $cuento = Cuento::find($id);
+      $cuento->delete();
+      return redirect()->route('cuentos.index');
     }
 }
