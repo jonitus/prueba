@@ -16,12 +16,12 @@ class CreateCuentosTable extends Migration
         Schema::create('cuentos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titulo');
+            $table->string('cover')->nullable();
             $table->integer('idprofesor');
             $table->string('nivel');
-            //Está puesto en nullable temporalmente
             $table->string('estado')->nullable();
             $table->string('descripcion');
-            //table->string('valoracion'); 
+            //table->string('valoracion');
             $table->string('autor');
             $table->timestamps();
         });

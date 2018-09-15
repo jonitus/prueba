@@ -1,18 +1,21 @@
 @extends('layouts.main')
 
 @section('content')
-<header>
-  <a class="btn boton-form justify-content-center" href="{{route('cuentos.create')}}">Crear cuento</a>
-</header>
 <div class="row">
     @foreach($cuentos as $cuento)
   <div class="card col-4">
     <div class="card-header">
-      <h2>{{$cuento['titulo']}}</h2>
-      <p>Nivel de dificultad: {{$cuento['nivel']}}</p>
+      <h2 class="display-5">{{$cuento['titulo']}}</h2>
+      <div class="lead">
+        <p>Nivel de dificultad: {{$cuento['nivel']}}</p>
+      </div>
     </div>
     <div class="card-body">
       <div class="">
+        <img class="img-thumbnail rounded mx-auto d-block" src="{{asset('img/'.$cuento['cover'])}}" alt="cover">
+      </div>
+      <br>
+      <div class="blockquote">
         {{$cuento['descripcion']}}
       </div>
       <footer class="card-footer" style="background-color:white;">

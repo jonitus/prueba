@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
 <div class="container">
@@ -49,11 +49,11 @@
 
 <select name="anyo" id="anyo">
     <option value="">Año</option>
-<?php 
+<?php
     $tope = date( 'Y' );
     $e_max = 80;
     $e_min = 6;
-    
+
     $anyo = $tope - $e_min;
     while ( $anyo >= ( $tope - $e_max )) {
         echo "<option value='$anyo'>$anyo</option>";

@@ -31,7 +31,13 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <!-- Left Side Of Navbar -->
                   <ul class="navbar-nav mr-auto">
-
+                    <li></li>
+                    <li class="nav-item">
+                      <a class="nav-link iconhome" href="{{route('cuentos.index')}}">Inicio</a>
+                    </li>
+                    <li class="nav-item iconhome">
+                      <a class="nav-link" href="{{route('cuentos.create')}}">Crear cuento</a>
+                    </li>
                   </ul>
 
                   <!-- Right Side Of Navbar -->

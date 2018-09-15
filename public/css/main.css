@@ -49,4 +49,6 @@ form{
 .card{
   border-top: 25px double yellowgreen;
   border-bottom: 25px double yellowgreen;
+  border-left: 25px double yellowgreen;
+  border-right: 25px double yellowgreen;
 }

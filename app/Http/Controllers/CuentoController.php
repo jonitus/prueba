@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cuento;
 use Illuminate\Http\Request;
+use Image;
 
 class CuentoController extends Controller
 {
@@ -15,7 +16,7 @@ class CuentoController extends Controller
     public function index()
     {
         $cuentos = Cuento::all();
-        return view('cuentos.index',compact('cuentos'));
+        return view('cuentos.index',['cuentos'=>$cuentos]);
     }
 
     /**
@@ -28,6 +29,21 @@ class CuentoController extends Controller
         return view('cuentos.create');
     }
 
+    //Generar un random_string
+    protected function random_string()
+    {
+    $key = '';
+    $keys = array_merge( range('a','z'), range(0,9) );
+
+    for($i=0; $i<10; $i++)
+    {
+        $key .= $keys[array_rand($keys)];
+    }
+
+    return $key;
+  }
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -36,18 +52,38 @@ class CuentoController extends Controller
      */
     public function store(Request $request)
     {
-        $cuento = new Cuento;
 
-        $cuento->titulo = $request->get('titulo');
-        $cuento->idprofesor = $request->get('idprofesor');
-        $cuento->nivel = $request->get('nivel');
-        $cuento->estado = $request->get('estado');
-        $cuento->autor = $request->get('autor');
-        $cuento->descripcion = $request->get('descripcion');
+      // ruta de las imagenes guardadas
+      $ruta = public_path().'/img/';
 
-        $cuento->save();
+      // recogida del form
+      $imagenOriginal = $request->file('cover');
 
-        return redirect()->route('cuentos.index');
+      // crear instancia de imagen
+      $imagen = Image::make($imagenOriginal);
+
+      // generar un nombre aleatorio para la imagen
+      $temp_name = $this->random_string() . '.' . $imagenOriginal->getClientOriginalExtension();
+
+      $imagen->resize(300,300);
+
+      // guardar imagen
+      // save( [ruta], [calidad])
+      $imagen->save($ruta . $temp_name, 100);
+
+      $cuento = new Cuento;
+
+      $cuento->titulo       = $request->get('titulo');
+      $cuento->cover        = $temp_name;
+      $cuento->idprofesor   = $request->get('idprofesor');
+      $cuento->nivel        = $request->get('nivel');
+      $cuento->estado       = $request->get('estado');
+      $cuento->autor        = $request->get('autor');
+      $cuento->descripcion  = $request->get('descripcion');
+
+      $cuento->save();
+
+      return redirect()->route('cuentos.index');
     }
 
     /**
@@ -58,7 +94,8 @@ class CuentoController extends Controller
      */
     public function show($id)
     {
-        //
+        $cuento = Cuento::find($id);
+        return view('cuentos.show',compact('cuento','id'));
     }
 
     /**
@@ -82,16 +119,35 @@ class CuentoController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $cuento = Cuento::find($id);
+      // ruta de las imagenes guardadas
+      $ruta = public_path().'/img/';
 
-      $cuento->titulo = $request->get('titulo');
-      $cuento->idprofesor = $request->get('idprofesor');
-      $cuento->nivel = $request->get('nivel');
-      $cuento->estado = $request->get('estado');
-      $cuento->descripcion = $request->get('descripcion');
-      $cuento->autor = $request->get('autor');
+      // recogida del form
+      $imagenOriginal = $request->file('cover');
 
-      $cuento->save();
+      // crear instancia de imagen
+      $imagen = Image::make($imagenOriginal);
+
+      // generar un nombre aleatorio para la imagen
+      $temp_name = $this->random_string() . '.' . $imagenOriginal->getClientOriginalExtension();
+
+      $imagen->resize(300,300);
+
+      // guardar imagen
+      // save( [ruta], [calidad])
+      $imagen->save($ruta . $temp_name, 100);
+
+      $cuento = new Cuento;
+
+      $cuento->titulo       = $request->get('titulo');
+      $cuento->cover        = $temp_name;
+      $cuento->idprofesor   = $request->get('idprofesor');
+      $cuento->nivel        = $request->get('nivel');
+      $cuento->estado       = $request->get('estado');
+      $cuento->autor        = $request->get('autor');
+      $cuento->descripcion  = $request->get('descripcion');
+
+      $cuento->update();
 
       return redirect()->route('cuentos.index');
     }
