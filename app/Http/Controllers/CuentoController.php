@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cuento;
+use App\Pagina;
 use Illuminate\Http\Request;
 use Image;
 
@@ -29,6 +30,7 @@ class CuentoController extends Controller
         return view('cuentos.create');
     }
 
+    //-------------------------------------------------------
     //Generar un random_string
     protected function random_string()
     {
@@ -53,22 +55,12 @@ class CuentoController extends Controller
     public function store(Request $request)
     {
 
-      // ruta de las imagenes guardadas
+      //código para guardar la imagen
       $ruta = public_path().'/img/';
-
-      // recogida del form
       $imagenOriginal = $request->file('cover');
-
-      // crear instancia de imagen
       $imagen = Image::make($imagenOriginal);
-
-      // generar un nombre aleatorio para la imagen
       $temp_name = $this->random_string() . '.' . $imagenOriginal->getClientOriginalExtension();
-
       $imagen->resize(300,300);
-
-      // guardar imagen
-      // save( [ruta], [calidad])
       $imagen->save($ruta . $temp_name, 100);
 
       $cuento = new Cuento;
@@ -83,7 +75,18 @@ class CuentoController extends Controller
 
       $cuento->save();
 
-      return redirect()->route('cuentos.index');
+      return redirect()->action('CuentoController@preview',$cuento->id);
+    }
+
+    /*
+      ------------------------------------------------------
+      Vista previa antes de pasar a crear páginas
+      ------------------------------------------------------
+    */
+    public function preview($id)
+    {
+      $cuento = Cuento::find($id);
+      return view('cuentos.preview',compact('cuento','id'));
     }
 
     /**
@@ -119,25 +122,14 @@ class CuentoController extends Controller
      */
     public function update(Request $request, $id)
     {
-      // ruta de las imagenes guardadas
+
+      $cuento = Cuento::find($id);
       $ruta = public_path().'/img/';
-
-      // recogida del form
       $imagenOriginal = $request->file('cover');
-
-      // crear instancia de imagen
       $imagen = Image::make($imagenOriginal);
-
-      // generar un nombre aleatorio para la imagen
       $temp_name = $this->random_string() . '.' . $imagenOriginal->getClientOriginalExtension();
-
       $imagen->resize(300,300);
-
-      // guardar imagen
-      // save( [ruta], [calidad])
       $imagen->save($ruta . $temp_name, 100);
-
-      $cuento = new Cuento;
 
       $cuento->titulo       = $request->get('titulo');
       $cuento->cover        = $temp_name;

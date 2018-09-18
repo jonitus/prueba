@@ -3,9 +3,9 @@
 @section('content')
 <article class="card">
   <header class="card-header">
-    <h1 style="color:olivedrab;">Publicar nuevo cuento</h1>
+    <h1>Publicar nuevo cuento</h1>
   </header>
-    <form class="card-body" action="{{route('cuentos.store')}}" method="post" enctype="multipart/form-data">
+    <form class="card-body" action="{{action('CuentoController@store')}}" method="post" enctype="multipart/form-data">
       @csrf
       <div class="row">
           <div class="col">
@@ -32,7 +32,7 @@
         <div class="col-4 justify-content-center">
         <label for="cover">Foto de portada:</label>
         <input type="file" name="cover" value="">
-        <p class="text-warning">Este campo es opcional*</p>
+        <p class="text-danger">Este campo es obligatorio*</p>
         </div>
       </div>
       <br>
@@ -41,12 +41,12 @@
               <textarea name="descripcion" placeholder="Descripción del cuento" rows="3" class="form-control"></textarea>
             </div>
       </div>
-      <br>
       <footer class="card-footer">
         <div class="row justify-content-center">
               <input class="btn boton-form" type="submit" name="store" value="Continuar">
         </div>
       </footer>
+      </div>
     </form>
 </article>
 @endsection

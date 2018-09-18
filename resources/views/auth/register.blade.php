@@ -47,21 +47,9 @@
 
                             <div class="col-md-6">
 
-<select name="anyo" id="anyo">
-    <option value="">Año</option>
-<?php
-    $tope = date( 'Y' );
-    $e_max = 80;
-    $e_min = 6;
+                              <input id="datepicker" type="text" class="date form-control" name="fechan" value="">
 
-    $anyo = $tope - $e_min;
-    while ( $anyo >= ( $tope - $e_max )) {
-        echo "<option value='$anyo'>$anyo</option>";
-        --$anyo;
-    }
-?>
-</select>
-                        </div>
+                            </div>
 
                         </div>
 

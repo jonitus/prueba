@@ -16,7 +16,7 @@
           <input type="hidden" name="idprofesor"  value="01">
           <div class="col">
             <select class="form-control" name="nivel">
-              <option value="0">Nivel de dificultad</option>
+              <option value="1">Nivel de dificultad</option>
               <option value="1">Lector Nivel Uno</option>
               <option value="2">Lector Nivel Dos</option>
               <option value="3">Lector Nivel Tres</option>
@@ -27,6 +27,14 @@
           <div class="col">
             <input type="text" name="autor" placeholder="Autor del cuento" class="form-control" value="{{$cuento->autor}}">
           </div>
+    </div>
+    <br>
+    <div class="row justify-content-center">
+      <div class="col-4 justify-content-center">
+      <label for="cover">Foto de portada:</label>
+      <input type="file" name="cover" value="{{asset('img/'.$cuento['cover'])}}">
+      <p class="text-danger">Este campo es obligatorio*</p>
+      </div>
     </div>
     <br>
     <div class="row justify-content-center">

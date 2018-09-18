@@ -20,3 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('cuentos', 'CuentoController');
+Route::get('cuentos/{cuento}/preview', 'CuentoController@preview')->name('cuentos.preview');
+Route::resource('paginas', 'PaginaController');
+Route::get('cuentos/{cuento}/paginas/create', 'PaginaController@create')->name('paginas.create');

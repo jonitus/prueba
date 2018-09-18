@@ -3,15 +3,19 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Prueba Cuentintoon #1</title>
-    <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
-    <!--Hoja de estilos personalizada -->
-    <link rel="stylesheet" href="{{asset('css/main.css')}}">
+    <title>Cuentintoon!</title>
     <style>
       @import url('https://fonts.googleapis.com/css?family=Bungee|Bungee+Inline|Lily+Script+One');
     </style>
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Fredoka+One');
+    </style>
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Comfortaa|Delius+Unicase');
+    </style>
+    <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="{{asset('js/app.js')}}" charset="utf-8"></script>
 
   </head>
 
@@ -21,8 +25,8 @@
 
       <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
           <div class="container">
-              <a class="navbar-brand iconhome" style="color:yellowgreen;" href="{{ url('/') }}">
-                  Home
+              <a class="navbar-brand iconhome" style="color:yellowgreen;font-family: 'Lily Script One', cursive;" href="{{ url('/') }}">
+                  <img class="logopequeño" src="{{asset('img/logoCT.png')}}" alt="logo">
               </a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                   <span class="navbar-toggler-icon"></span>
@@ -35,8 +39,11 @@
                     <li class="nav-item">
                       <a class="nav-link iconhome" href="{{route('cuentos.index')}}">Inicio</a>
                     </li>
-                    <li class="nav-item iconhome">
-                      <a class="nav-link" href="{{route('cuentos.create')}}">Crear cuento</a>
+                    <li class="nav-item">
+                      <a class="nav-link iconhome" href="{{route('cuentos.create')}}">Crear cuento</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link iconhome">Mis cuentos</a>
                     </li>
                   </ul>
 
@@ -77,8 +84,8 @@
     </header>
 
     <div class="container.fluid">
-      <header>
-        <h1 class="display-2 headerfijo">Cuentintoon <span class="letrah1">!</span> </h1>
+      <header class="row">
+          <img class="mx-auto d-block logoCT" src="{{asset('img/logoCT.png')}}" alt="logo">
       </header>
 
       <main class="py-4">

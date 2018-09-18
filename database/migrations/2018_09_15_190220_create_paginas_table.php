@@ -15,7 +15,12 @@ class CreatePaginasTable extends Migration
     {
         Schema::create('paginas', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('idcuento')->unsigned();
+            $table->string('filename')->nullable();
+            $table->text('contenido');
             $table->timestamps();
+
+            $table->foreign('idcuento')->references('id')->on('cuentos');
         });
     }
 

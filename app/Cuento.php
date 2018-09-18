@@ -9,4 +9,9 @@ class Cuento extends Model
     protected $fillable = [
       'titulo','idprofesor','nivel','estado','autor','descripcion',
     ];
+
+    public function paginas()
+    {
+      return $this->hasMany('Pagina');
+    }
 }
