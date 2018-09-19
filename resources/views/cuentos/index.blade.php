@@ -30,7 +30,7 @@
         <a style="color:white" href="{{action('CuentoController@edit',$cuento['id'])}}" class="btn btn-warning">Editar</a>
       </div>
       <div class="col-4">
-        <a style="color:white" href="{{action('CuentoController@show',$cuento['id'])}}" class="btn btn-primary">Ver</a>
+        <a style="color:white" href="{{route('paginas.mostrar',$cuento->id)}}" class="btn btn-primary">Ver</a>
       </div>
       <div class="col-4">
         <form class="" action="{{action('CuentoController@destroy',$cuento['id'])}}" method="post">

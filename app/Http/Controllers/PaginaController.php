@@ -14,10 +14,18 @@ class PaginaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $paginas = Pagina::paginate(1);
-        return view('paginas.index',['paginas' => $paginas]);
+        // $cuento = Cuento::find($id);
+        // $paginas = Pagina::where('idcuento',$cuento->id)->orderBy('id','ASC')->get();
+        // return view('paginas.index',compact('cuento','paginas'));
+    }
+
+     public function mostrar($id)
+    {
+        $cuento = Cuento::find($id);
+        $paginas = Pagina::where('idcuento',$cuento->id)->paginate(1);
+        return view('paginas.index',compact('cuento','paginas'));
     }
 
     // ------------------------------------------------------
