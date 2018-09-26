@@ -20,7 +20,11 @@ class CreatePaginasTable extends Migration
             $table->text('contenido');
             $table->timestamps();
 
-            $table->foreign('idcuento')->references('id')->on('cuentos');
+            $table->foreign('idcuento')
+                    ->references('id')
+                    ->on('cuentos')
+                    ->onDelete('cascade');
+
         });
     }
 

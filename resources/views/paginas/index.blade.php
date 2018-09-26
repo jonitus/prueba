@@ -11,5 +11,14 @@
 				<div>{{ $pagina->contenido }}</div>
 			@endforeach
 		</div>
+		<div class="card-footer row">
+			<div class="col" style="float:left">
+				<a href="{{ route('cuentos.index') }}" class="btn btn-primary">Volver</a>
+			</div>
+			<div class="col">{{ $paginas->links() }}</div>
+			<div class="col">
+				<a href="{{ action('PaginaController@create',$cuento->id) }}">Añadir página</a>
+			</div>
+		</div>
 	</div>
 @endsection

@@ -16,16 +16,14 @@ class PaginaController extends Controller
      */
     public function index($id)
     {
-        // $cuento = Cuento::find($id);
-        // $paginas = Pagina::where('idcuento',$cuento->id)->orderBy('id','ASC')->get();
-        // return view('paginas.index',compact('cuento','paginas'));
+        //
     }
 
      public function mostrar($id)
     {
         $cuento = Cuento::find($id);
         $paginas = Pagina::where('idcuento',$cuento->id)->paginate(1);
-        return view('paginas.index',compact('cuento','paginas'));
+        return view('paginas.index',compact('cuento','paginas'))->withPaginas($paginas);
     }
 
     // ------------------------------------------------------
@@ -65,22 +63,30 @@ class PaginaController extends Controller
 
       //código para guardar la imagen
       $ruta = public_path().'/img/';
+      //imagen es opcional
+      if($request->file('filename')!=null){
+
       $imagenOriginal = $request->file('filename');
       $imagen = Image::make($imagenOriginal);
       $temp_name = $this->random_string() . '.' . $imagenOriginal->getClientOriginalExtension();
       $imagen->resize(300,300);
       $imagen->save($ruta . $temp_name, 100);
 
+      }
 
       $pagina = new Pagina;
       $pagina->idcuento = $request->get('idcuento');
       $pagina->contenido = $request->get('contenido');
+      if ($request->file('filename')!=null) {      
       $pagina->filename = $temp_name;
-
+      }
+      else{
+        $pagina->filename = null;
+      }
       $pagina->save();
 
       return redirect()->route('cuentos.index');
-
+      
 
     }
 
