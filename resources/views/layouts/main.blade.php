@@ -85,7 +85,7 @@
 
     <div class="container.fluid">
       <header class="row">
-          <img class="mx-auto d-block logoCT" src="{{asset('img/logoCT.png')}}" alt="logo">
+          <img class="mx-auto d-block" src="{{asset('img/logoCT.png')}}" alt="logo">
       </header>
 
       <main class="py-4">

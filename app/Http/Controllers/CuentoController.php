@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cuento;
 use App\Pagina;
 use Illuminate\Http\Request;
+use App\Http\Requests\CuentoRequest;
 use Image;
 
 class CuentoController extends Controller
@@ -52,10 +53,13 @@ class CuentoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CuentoRequest $request)
     {
 
-      //código para guardar la imagen
+      // -------------------------------------
+      //     Código para guardar la imagen
+      // -------------------------------------
+
       $ruta = public_path().'/img/';
       $imagenOriginal = $request->file('cover');
       $imagen = Image::make($imagenOriginal);
@@ -80,7 +84,7 @@ class CuentoController extends Controller
 
     /*
       ------------------------------------------------------
-      Vista previa antes de pasar a crear páginas
+          Vista previa antes de pasar a crear páginas
       ------------------------------------------------------
     */
     public function preview($id)

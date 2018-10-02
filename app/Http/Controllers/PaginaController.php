@@ -14,10 +14,16 @@ class PaginaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $paginas = Pagina::paginate(1);
-        return view('paginas.index',['paginas' => $paginas]);
+        //
+    }
+
+     public function mostrar($id)
+    {
+        $cuento = Cuento::find($id);
+        $paginas = Pagina::where('idcuento',$cuento->id)->paginate(1);
+        return view('paginas.index',compact('cuento','paginas'))->withPaginas($paginas);
     }
 
     // ------------------------------------------------------
@@ -57,24 +63,43 @@ class PaginaController extends Controller
 
       //código para guardar la imagen
       $ruta = public_path().'/img/';
+<<<<<<< HEAD
       if ($request->file('filename')!=null){
+=======
+      //imagen es opcional
+      if($request->file('filename')!=null){
+
+>>>>>>> 2ac6c98be40f3d980a851ac2eb037ae12344f260
       $imagenOriginal = $request->file('filename');
       $imagen = Image::make($imagenOriginal);
       $temp_name = $this->random_string() . '.' . $imagenOriginal->getClientOriginalExtension();
       $imagen->resize(300,300);
       $imagen->save($ruta . $temp_name, 100);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2ac6c98be40f3d980a851ac2eb037ae12344f260
       }
 
       $pagina = new Pagina;
       $pagina->idcuento = $request->get('idcuento');
       $pagina->contenido = $request->get('contenido');
+<<<<<<< HEAD
       if ($request->file('filename')!=null){
       $pagina->filename = $temp_name;}
       else {$pagina->filename = null;}
+=======
+      if ($request->file('filename')!=null) {      
+      $pagina->filename = $temp_name;
+      }
+      else{
+        $pagina->filename = null;
+      }
+>>>>>>> 2ac6c98be40f3d980a851ac2eb037ae12344f260
       $pagina->save();
 
       return redirect()->route('cuentos.index');
-
+      
 
     }
 

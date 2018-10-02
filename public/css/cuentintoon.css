@@ -1,0 +1,143 @@
+/* Fuentes
+font-family: 'Cherry Swash', cursive; Para encabezados
+font-family: 'Gabriela', serif; Para texto en general */
+
+
+body{
+  background-color: RGB(195,255,104);
+  font-family: 'Gabriela', serif;
+  color:darkslategray;
+}
+h1, h2, h3{
+  font-family: 'Cherry Swash', cursive;
+}
+
+/* Top Side */
+.top-side{
+  background-color: RGB(126,208,214);
+  border-bottom: 10px solid RGB(244,252,232);
+}
+#logo-top{
+  width: 35%;
+  display: block;
+  margin: auto;
+}
+/* Mid Side */
+.mid-side{
+
+}
+
+/* Card Index */
+.cuento{
+  width: 60%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  border: none;
+  border-radius: none;
+}
+.cover{
+  width: 90%;
+  border-radius: 50%;
+  border: 2px double rgb(78,150,137);
+}
+.cover:hover{
+  width: 100%;
+}
+.card, .card-cuento{
+  text-align: center;
+  background-color: RGB(244,252,232);
+  border-radius: none;
+  border: none;
+}
+.card-body{
+  border-radius: none;
+}
+.card-actions{
+  background-color: rgb(78,150,137);
+  border-bottom: 10px solid RGB(126,208,214);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.badge-autor{
+  background-color: rgb(78,150,137);
+  color:white;
+}
+.badge-nivel{
+  background-color: rgb(126,208,214);
+  color:white;
+}
+.card-link{
+  color:white;
+}
+.card-link:hover{
+  background-color: rgba(126,208,214,0.5);
+}
+.card-link-delete{
+  float: right;
+  color:darkred;
+}
+.card-link-delete:hover{
+  text-decoration: none;
+  color:white;
+}
+/* Navbar-top */
+.navbar-ct{
+  background-color: RGB(244,252,232);
+  border: none;
+  border-top: 20px double RGB(126,208,214);
+  box-shadow: none;
+  margin: 0;
+  font-size: 20px;
+}
+.link-navbar{
+  width: 75%;
+}
+.link-navbar:hover{
+  width: 100%;
+}
+.iconhome{
+  margin-right: 35px;
+  margin-left:0;
+}
+/* Vistas con Formularios */
+.form-container{
+  background-color: rgb(244,252,232);
+  margin: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  border-radius: 10px;
+  border: 5px dashed rgb(135,214,155);
+}
+.form-items{
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+.form-button{
+  background-color: rgb(78,150,137);
+  color: rgb(244,252,232);
+}
+.form-button:hover{
+  background-color: rgb(135,214,155);
+  border: 1px solid rgb(78,150,137);
+}
+.form-header{
+  color: rgb(135,214,155);
+}
+.form-input{
+  background-color: rgba(78,150,137,0.1);
+  border: 1px solid rgb(135,214,155);
+  text-align: center;
+}
+.form-input:hover{
+  border: 1px solid rgb(78,150,137);
+  color:rgb(78,150,137);
+}
+
+.dark-letter{
+  color: rgb(78,150,137);
+}
+.validate-error{
+  margin: auto;
+  display: block;
+  text-align: justify;
+}
