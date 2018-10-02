@@ -57,18 +57,20 @@ class PaginaController extends Controller
 
       //código para guardar la imagen
       $ruta = public_path().'/img/';
+      if ($request->file('filename')!=null){
       $imagenOriginal = $request->file('filename');
       $imagen = Image::make($imagenOriginal);
       $temp_name = $this->random_string() . '.' . $imagenOriginal->getClientOriginalExtension();
       $imagen->resize(300,300);
       $imagen->save($ruta . $temp_name, 100);
-
+      }
 
       $pagina = new Pagina;
       $pagina->idcuento = $request->get('idcuento');
       $pagina->contenido = $request->get('contenido');
-      $pagina->filename = $temp_name;
-
+      if ($request->file('filename')!=null){
+      $pagina->filename = $temp_name;}
+      else {$pagina->filename = null;}
       $pagina->save();
 
       return redirect()->route('cuentos.index');
