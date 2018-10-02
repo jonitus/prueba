@@ -1,46 +1,59 @@
-@extends('layouts.main')
+@extends('layouts.layout')
 
 @section('content')
-<div class="row">
-    @foreach($cuentos as $cuento)
-  <div class="card col-4">
-    <div class="card-header">
-      <h2>{{$cuento['titulo']}}</h2>
-      <div class="lead">
-        <p>Nivel de dificultad: {{$cuento['nivel']}}</p>
-      </div>
-    </div>
+@foreach($cuentos as $cuento)
+<div class="cuento col-4">
+  <div class="card card-cuento">
     <div class="card-body">
-      <div class="">
-        <img class="img-thumbnail rounded mx-auto d-block" src="{{asset('img/'.$cuento['cover'])}}" alt="cover">
+      <div class="card-cover">
+        <img src="{{asset('img/'.$cuento->cover)}}" class="cover" alt="cover">
       </div>
-      <br>
-      <div class="blockquote">
-        {{$cuento['descripcion']}}
+      <div class="card-content">
+        <h2>{{$cuento->titulo}}</h2>
+        <p>{{$cuento->descripcion}}</p>
       </div>
-      <footer class="card-footer" style="background-color:white;">
-        <ul>
-          <li>Autor:{{$cuento['autor']}}</li>
-          <li>Publicado:{{$cuento['created_at']}}</li>
-        </ul>
-      </footer>
+      <div class="card-info">
+        <span class="badge badge-pill badge-nivel">{{$cuento->nivel}}</span>
+        <span class="badge badge-pill badge-autor">{{$cuento->autor}}</span>
+      </div>
     </div>
-    <footer class="card-footer row">
-      <div class="col-4">
-        <a style="color:white" href="{{action('CuentoController@edit',$cuento['id'])}}" class="btn btn-warning">Editar</a>
+  </div>
+  <footer class="card-actions">
+    <div class="row">
+      <div class="col-3">
+        <a class="btn btn-link card-link card-link" href="{{route('paginas.mostrar',$cuento->id)}}" data-toggle="tooltip" title="Leer">
+          <img src="{{asset('rsc/read16.png')}}" alt="">
+        </a>
       </div>
-      <div class="col-4">
-        <a style="color:white" href="{{route('paginas.mostrar',$cuento->id)}}" class="btn btn-primary">Ver</a>
+      <div class="col-3">
+        <a class="btn btn-link card-link" href="{{route('cuentos.edit',$cuento->id)}}" data-toggle="tooltip" title="Editar">
+          <img src="{{asset('rsc/edit16.png')}}" alt="">
+        </a>
       </div>
-      <div class="col-4">
-        <form class="" action="{{action('CuentoController@destroy',$cuento['id'])}}" method="post">
+      <div class="col-6">
+        <form class="hidden" action="{{action('CuentoController@destroy',$cuento->id)}}" method="post">
           @csrf
           <input type="hidden" name="_method" value="DELETE">
-          <button type="submit" class="btn btn-danger" name="button">Eliminar</button>
+          <button type="submit" name="button" class="btn btn-link card-link-delete">Eliminar</button>
         </form>
       </div>
-    </footer>
-  </div>
-  @endforeach
+    </div>
+  </footer>
 </div>
+
+<!-- Nivelar height de columnas -->
+<script>
+$(document).ready(function() {
+    var heights = $(".cuento").map(function() {
+        return $(this).height();
+    }).get(),
+
+    maxHeight = Math.max.apply(null, heights);
+
+    $(".cuento").height(maxHeight);
+});
+</script>
+
+
+@endforeach
 @endsection

@@ -24,4 +24,4 @@ Route::get('cuentos/{cuento}/preview', 'CuentoController@preview')->name('cuento
 Route::resource('paginas', 'PaginaController');
 Route::get('cuentos/{cuento}/paginas/create', 'PaginaController@create')->name('paginas.create');
 Route::get('cuentos/{cuento}/paginas/{pagina}/edit','PaginaController@edit')->name('paginas.editar');
-Route::get('mostrar/{cuento}','PaginaController@mostrar')->name('paginas.mostrar');
+Route::get('leer/{cuento}','PaginaController@mostrar')->name('paginas.mostrar');

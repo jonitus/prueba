@@ -1,52 +1,84 @@
-@extends('layouts.main')
+@extends('layouts.layout')
 
 @section('content')
-<article class="card">
-  <header class="card-header">
-    <h1>Publicar nuevo cuento</h1>
-  </header>
-    <form class="card-body" action="{{action('CuentoController@store')}}" method="post" enctype="multipart/form-data">
-      @csrf
-      <div class="row">
-          <div class="col">
-          <input type="text" class="form-control" name="titulo" placeholder="Título del cuento">
-          </div>
-        <!--Cuando relacionemos las tablas este input será removido -->
-            <input type="hidden" name="idprofesor"  value="01">
-            <div class="col">
-              <select class="form-control" name="nivel">
-                <option value="0">Nivel de dificultad</option>
-                <option value="1">Lector Nivel Uno</option>
-                <option value="2">Lector Nivel Dos</option>
-                <option value="3">Lector Nivel Tres</option>
-              </select>
-            </div>
-            <!--Por defecto es "En revisión" hasta que el "moderador" acepte la publicación -->
-                <input type="hidden" name="estado" value="publicado">
-            <div class="col">
-              <input type="text" name="autor" placeholder="Autor del cuento" class="form-control">
-            </div>
+
+<div class="col-8 form-container">
+    <div class="row justify-content-center">
+      <h1 class="display-4 form-header"><span class="dark-letter">C</span>rear Cuen<span class="dark-letter">t</span>o</h1>
+    </div>
+    @if(count($errors) > 0)
+    <div class="alert alert-danger validate-error alert-dismissible fade show" role="alert">
+        <ul style="list-style-type: none;">
+          @foreach($errors->all() as $error)
+          <li>{{$error}}</li>
+        </ul>
+      @endforeach
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </div>
+    @endif
+    {!! Form::open(['action' => 'CuentoController@store','enctype' => 'multipart/form-data', 'id' => 'form-validate']) !!}
+    <div class="row form-items">
+      <h3>Rellena correctamente los espacios.</h3>
+    </div>
+    <div class="row form-items justify-content-center">
+      <span class="badge badge-danger">Todos los campos son obligatorios*</span>
+    </div>
+    <div class="row justify-content-center form-items">
+      <div class="col-3">
+        {!! Form::label('titulo', 'Título del cuento:', ['class' => 'form-label','required']) !!}
       </div>
-      <br>
-      <div class="row justify-content-center">
-        <div class="col-4 justify-content-center">
-        <label for="cover">Foto de portada:</label>
-        <input type="file" name="cover" value="">
-        <p class="text-danger">Este campo es obligatorio*</p>
-        </div>
+      <div class="col-3">
+        {!! Form::text('titulo', '', ['class' => 'form-input']) !!}
       </div>
-      <br>
-      <div class="row justify-content-center">
-            <div class="col-4">
-              <textarea name="descripcion" placeholder="Descripción del cuento" rows="3" class="form-control"></textarea>
-            </div>
+    </div>
+    {!! Form::hidden('idprofesor', $value='1', []) !!}
+    <div class="row justify-content-center form-items">
+      <div class="col-3">
+        {!! Form::label('nivel', 'Nivel del cuento:', ['class' => 'form-label']) !!}
       </div>
-      <footer class="card-footer">
-        <div class="row justify-content-center">
-              <input class="btn boton-form" type="submit" name="store" value="Continuar">
-        </div>
-      </footer>
+      <div class="col-3">
+        {!! Form::select('nivel', ['1' => 'Nivel Uno',
+                                    '2' => 'Nivel Dos',
+                                    '3' => 'Nivel Tres',
+                                    '4' => 'Nivel Cuatro',
+                                    '5' => 'Nivel Cinco'],  []) !!}
       </div>
-    </form>
-</article>
+    </div>
+    {!! Form::hidden('estado', $value='publicado', []) !!}
+    <div class="row justify-content-center form-items">
+      <div class="col-3">
+        {!! Form::label('autor', 'Autor:', ['class' => 'form-label']) !!}
+      </div>
+      <div class="col-3">
+        {!! Form::text('autor','', ['class' => 'form-input']) !!}
+      </div>
+    </div>
+    <div class="row justify-content-center form-items">
+      <div class="col-3">
+        {!! Form::label('cover', 'Foto de portada:', ['class' => 'form-label']) !!}
+      </div>
+      <div class="col-3">
+        {!! Form::file('cover',[]) !!}
+      </div>
+    </div>
+    <div class="row justify-content-center form-items">
+      <div class="col-3">
+        {!! Form::label('descripcion', 'Descripción del cuento:', ['class' => 'form-label']) !!}
+      </div>
+      <div class="col-3">
+        {!! Form::textarea('descripcion', '', ['rows' => '2', 'cols' => '20', 'class' => 'form-input']) !!}
+      </div>
+    </div>
+    <div class="row justify-content-center form-items">
+      <div class="col-2">
+        {!! Form::submit('¡Crear Cuento!', ['class' => 'btn form-button','id' => 'btn-validate']) !!}
+      </div>
+    </div>
+    {!! Form::close() !!}
+    <!-- Script para alert -->
+    <script type="text/javascript">
+      $('.alert').alert()
+    </script>
+</div>
 @endsection
