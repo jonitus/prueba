@@ -24,12 +24,14 @@ h1, h2, h3{
 }
 /* Mid Side */
 .mid-side{
-
 }
 
 /* Card Index */
+.row-card{
+
+}
 .cuento{
-  width: 60%;
+  width: 50%;
   margin-top: 2%;
   margin-bottom: 2%;
   border: none;
@@ -132,12 +134,28 @@ h1, h2, h3{
   border: 1px solid rgb(78,150,137);
   color:rgb(78,150,137);
 }
-
+.badge-form{
+  background-color: rgb(123, 36, 28);
+}
 .dark-letter{
   color: rgb(78,150,137);
 }
 .validate-error{
   margin: auto;
-  display: block;
   text-align: justify;
+}
+/* Preview */
+.preview-container{
+  background-color: rgb(244,252,232);
+  margin: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  border-radius: 10px;
+  border: 5px dashed rgb(135,214,155);
+  text-align: center;
+}
+.preview-footer{
+  background-color: rgb(78,150,137);
+  border: 5px solid rgb(244,252,232);
+  border-radius: 15px;
 }
