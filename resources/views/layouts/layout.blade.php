@@ -81,7 +81,7 @@
             </div>
         </nav>
       </div>
-      <main class="container-fluid mid-side row justify-content-center">
+      <main class="container-fluid mid-side">
         @yield('content')
       </main>
     </div>
