@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pagina;
+use App\Http\Requests\PaginaRequest;
 use App\Cuento;
 use Image;
 
@@ -58,7 +59,7 @@ class PaginaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PaginaRequest $request)
     {
 
       //código para guardar la imagen
@@ -69,7 +70,6 @@ class PaginaController extends Controller
       $imagenOriginal = $request->file('filename');
       $imagen = Image::make($imagenOriginal);
       $temp_name = $this->random_string() . '.' . $imagenOriginal->getClientOriginalExtension();
-      $imagen->resize(300,300);
       $imagen->save($ruta . $temp_name, 100);
 
       }
@@ -77,7 +77,7 @@ class PaginaController extends Controller
       $pagina = new Pagina;
       $pagina->idcuento = $request->get('idcuento');
       $pagina->contenido = $request->get('contenido');
-      if ($request->file('filename')!=null) {      
+      if ($request->file('filename')!=null) {
       $pagina->filename = $temp_name;
       }
       else{
@@ -86,7 +86,7 @@ class PaginaController extends Controller
       $pagina->save();
 
       return redirect()->route('cuentos.index');
-      
+
 
     }
 
@@ -119,7 +119,7 @@ class PaginaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PaginaRequest $request, $id)
     {
         //
     }

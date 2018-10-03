@@ -79,6 +79,7 @@ h1, h2, h3{
   color:darkred;
 }
 .card-link-delete:hover{
+  background-color: rgb(123, 36, 28);
   text-decoration: none;
   color:white;
 }
@@ -101,6 +102,11 @@ h1, h2, h3{
   margin-right: 35px;
   margin-left:0;
 }
+
+/* -----------------------------------------
+            Vistas de Cuento
+-----------------------------------------  */
+
 /* Vistas con Formularios */
 .form-container{
   background-color: rgb(244,252,232);
@@ -117,6 +123,7 @@ h1, h2, h3{
 .form-button{
   background-color: rgb(78,150,137);
   color: rgb(244,252,232);
+  margin-bottom: 5%;
 }
 .form-button:hover{
   background-color: rgb(135,214,155);
@@ -158,4 +165,32 @@ h1, h2, h3{
   background-color: rgb(78,150,137);
   border: 5px solid rgb(244,252,232);
   border-radius: 15px;
+}
+
+
+/* -----------------------------------------
+              Vistas de Página
+----------------------------------------- */
+.light-letter{
+  color: rgb(135,214,155);
+}
+.pages-container{
+  background-color: rgb(244,252,232);
+  margin: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  border-radius: 10px;
+  border: 5px dashed rgb(135,214,155);
+  text-align: center;
+}
+.pages-footer{
+  background-color: rgb(78,150,137);
+  border: 5px solid rgb(244,252,232);
+  border-radius: 15px;
+  width: 80%;
+  margin: auto;
+}
+.paginate-links{
+  margin-top: 0;
+  margin-bottom:0;
 }
